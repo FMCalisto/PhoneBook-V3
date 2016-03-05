@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phonebook>
+  <person name="Maria">
+    <contacts>
+      <contact name="Xana" phoneNumber="963456789" />
+      <contact name="Manel" phoneNumber="333333333" />
+      <contact name="IST" phoneNumber="214315112" />
+      <contact name="SOS" phoneNumber="112" />
+    </contacts>
+  </person>
+  <person name="Manel">
+    <contacts>
+      <contact name="Zé" phoneNumber="966669999" />
+      <contact name="Xico" phoneNumber="911919191" />
+      <contact name="IST" phoneNumber="214315112" />
+      <contact name="SOS" phoneNumber="112" />
+    </contacts>
+  </person>
+</phonebook>

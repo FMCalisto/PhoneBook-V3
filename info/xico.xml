@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phonebook>
+  <person name="Francisco">
+    <contacts>
+      <contact name="Emergência" phoneNumber="112" />
+      <contact name="parents" phoneNumber="901987654" />
+      <contact name="home" phoneNumber="214789456" />
+      <contact name="mobile" phoneNumber="93399339" />
+    </contacts>
+  </person>
+</phonebook>

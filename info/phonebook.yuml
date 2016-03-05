@@ -1,0 +1,6 @@
+[PhoneBook]
+[Person| String name;]
+[Contact| String name; Integer phoneNumber;]
+[.pt.ist.fenixframework.DomainRoot]0..1 root - phonebook 0..1[PhoneBook] // DomainRootHasPhoneBookApplication
+[Person] person - contact *[Contact] // PersonContainsContacts
+[PhoneBook] phoneBook - person *[Person] // PhoneBookContainsPersons
