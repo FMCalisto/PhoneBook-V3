@@ -6,6 +6,7 @@
       <contact name="parents" phoneNumber="901987654" />
       <contact name="home" phoneNumber="214789456" />
       <contact name="mobile" phoneNumber="93399339" />
+      <email-contact name="Xana" phoneNumber="888888888" email="xana@gmail.com" />
     </contacts>
   </person>
 </phonebook>

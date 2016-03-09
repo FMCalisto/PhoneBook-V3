@@ -10,7 +10,13 @@ import pt.tecnico.phonebook.exception.NameAlreadyExistsException;
 
 public class Contact extends Contact_Base {
 
+    protected Contact() { /* for derived classes */ }
+
     public Contact(Person person, String name, Integer phoneNumber) throws InvalidPhoneNumberException {
+	init(person, name, phoneNumber);
+    }
+
+    protected void init(Person person, String name, Integer phoneNumber) throws InvalidPhoneNumberException {
         setName(name);
         setPhoneNumber(phoneNumber);
 	setPerson(person);
@@ -47,10 +53,8 @@ public class Contact extends Contact_Base {
     public void xmlImport(Element contactElement) throws ImportDocumentException {
 	try {
             setName(new String(contactElement.getAttribute("name").getValue().getBytes("UTF-8")));
-	} catch (UnsupportedEncodingException e) { System.err.println(e); }
-        try {
             setPhoneNumber(contactElement.getAttribute("phoneNumber").getIntValue());
-        } catch (DataConversionException e) {
+	} catch (UnsupportedEncodingException | DataConversionException e) {
             throw new ImportDocumentException();
         }
     }

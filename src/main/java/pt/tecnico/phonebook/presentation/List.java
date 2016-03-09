@@ -20,7 +20,8 @@ public class List extends PbCommand {
 	    lpp.execute();
 	    System.out.println("Contacts for "+args[0]);
 	    for (ContactDto d: lpp.result())
-		System.out.println(d.getName()+" -> "+d.getPhoneNumber());
+		System.out.println(d.getName()+" -> "+d.getPhoneNumber()
+		      + (d.getEmail().length() > 0 ? " " + d.getEmail() : ""));
 	}
     }
 }

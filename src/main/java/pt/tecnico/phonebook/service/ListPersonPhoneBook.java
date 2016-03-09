@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Collections;
 
 import pt.tecnico.phonebook.domain.Contact;
+import pt.tecnico.phonebook.domain.EmailContact;
 import pt.tecnico.phonebook.domain.Person;
 import pt.tecnico.phonebook.exception.PersonDoesNotExistException;
 import pt.tecnico.phonebook.service.dto.ContactDto;
@@ -23,7 +24,11 @@ public class ListPersonPhoneBook extends PhoneBookService {
         phonebook = new ArrayList<ContactDto>();
 
         for (Contact c : person.getContactSet()) {
-            phonebook.add(new ContactDto(c.getName(), c.getPhoneNumber()));
+	    if (c instanceof EmailContact)
+		phonebook.add(new ContactDto(c.getName(), c.getPhoneNumber(),
+			((EmailContact)c).getEmail()));
+	    else
+		phonebook.add(new ContactDto(c.getName(), c.getPhoneNumber()));
         }
 
         Collections.sort(phonebook);

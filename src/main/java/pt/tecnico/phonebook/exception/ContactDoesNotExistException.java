@@ -7,7 +7,7 @@ public class ContactDoesNotExistException extends PhoneBookException {
     private String contactName;
 
     public ContactDoesNotExistException(String contactName) {
-        contactName = contactName;
+        this.contactName = contactName;
     }
 
     public String getContactName() {

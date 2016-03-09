@@ -4,6 +4,7 @@ import org.jdom2.Element;
 import java.io.UnsupportedEncodingException;
 
 import pt.tecnico.phonebook.exception.NameAlreadyExistsException;
+import pt.tecnico.phonebook.exception.ImportDocumentException;
 
 public class Person extends Person_Base {
 
@@ -53,18 +54,23 @@ public class Person extends Person_Base {
         deleteDomainObject();
     }
 
-    public void xmlImport(Element personElement) {
+    public void xmlImport(Element personElement) throws ImportDocumentException {
         // clear current phone book
         for (Contact c: getContactSet())
             c.remove();
 
 	try {
             setName(new String(personElement.getAttribute("name").getValue().getBytes("UTF-8")));
-	} catch (UnsupportedEncodingException e) { System.err.println(e); }
+	} catch (UnsupportedEncodingException e) {
+            throw new ImportDocumentException();
+	}
         Element contacts = personElement.getChild("contacts");
 
         for (Element contactElement: contacts.getChildren("contact"))
             new Contact(this, contactElement);
+
+        for (Element contactElement: contacts.getChildren("email-contact"))
+            new EmailContact(this, contactElement);
     }
 
     public Element xmlExport() {

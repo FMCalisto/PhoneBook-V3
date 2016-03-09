@@ -11,6 +11,10 @@ class Contact {
   Integer phoneNumber;
 }
 
+class EmailContact extends Contact {
+  String email;
+}
+
 relation DomainRootHasPhoneBookApplication {
   .pt.ist.fenixframework.DomainRoot playsRole root {
     multiplicity 0..1;

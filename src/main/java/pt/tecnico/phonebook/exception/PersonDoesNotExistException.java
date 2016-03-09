@@ -7,7 +7,7 @@ public class PersonDoesNotExistException extends PhoneBookException {
     private String personName;
 
     public PersonDoesNotExistException(String personName) {
-        personName = personName;
+        this.personName = personName;
     }
 
     public String getPersonName() {

@@ -7,7 +7,7 @@ public class NameAlreadyExistsException extends PhoneBookException {
     private String conflictingName;
 
     public NameAlreadyExistsException(String conflictingName) {
-        conflictingName = conflictingName;
+        this.conflictingName = conflictingName;
     }
 
     public String getConflictingName() {

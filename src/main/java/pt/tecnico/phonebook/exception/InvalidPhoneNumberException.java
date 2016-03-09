@@ -7,7 +7,7 @@ public class InvalidPhoneNumberException extends PhoneBookException {
     private int phoneNumber;
 
     public InvalidPhoneNumberException(int phoneNumber) {
-        phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getInvalidPhoneNumber() {
