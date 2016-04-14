@@ -1,0 +1,51 @@
+#! /bin/sh
+ORG=tecnico-softeng
+GRP=
+PRJ=
+PW=
+
+# command line: gitbck [team user:passwd [project [organization]]]
+if [ $# -ge 2 ]; then
+  GRP=$1
+  if [ $# -ge 3 ]; then
+    PRJ=$3
+  else
+    PRJ=$GRP-project
+  fi
+  PW=$2
+  if [ $# -gt 4 ]; then ORG=$3; fi
+fi
+
+if [ "$GRP" == "" ]; then
+  echo -n "Enter team name (ex. es16al_00) "
+  read GRP
+  PRJ=$GRP-project
+fi
+if [ "$PW" == "" ]; then
+  echo -n "Enter github.com username:password (ex. octocat:octopass) "
+  read PW
+fi
+
+mkdir $GRP
+cd $GRP
+if [ $? -ne 0 ]; then exit 1; fi
+echo "cloning: https://github.com/$ORG/$PRJ.git"
+git clone -q https://github.com/$ORG/$PRJ.git
+if [ $? -ne 0 ]; then exit 1; fi
+echo -n "retrieving: wiki"
+git clone -q https://github.com/$ORG/$PRJ.wiki.git
+
+mkdir mgmt stats
+for i in issues miletones labels pulls releases; do
+  echo -n " $i"
+  curl -s -u $PW https://api.github.com/repos/$ORG/$PRJ/$i -q > mgmt/$i.txt
+done
+for i in contributors commit_activity participation code_frequency punch_card; do
+  echo -n " $i"
+  curl -s -u $PW https://api.github.com/repos/$ORG/$PRJ/stats/$i -q > stats/$i.txt
+done
+echo
+
+cd ..
+tar zcf $GRP.tgz $GRP
+echo "Backup of $GRP in $GRP.tgz done."
